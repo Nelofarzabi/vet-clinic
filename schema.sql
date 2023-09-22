@@ -37,3 +37,9 @@ DROP COLUMN species;
 -- Add column species_id
 ALTER TABLE animals
 ADD species_id INT;
+
+-- Make the specied_id column to hold foreign keys referencing species table
+ALTER TABLE animals
+ADD CONSTRAINT fk_species
+FOREIGN KEY (species_id)
+REFERENCES species(id);
