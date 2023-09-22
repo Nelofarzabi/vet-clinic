@@ -183,3 +183,10 @@ ON visits.animal_id = animals.id
 WHERE vets.name = 'William Tatcher'
 ORDER BY date_of_visit DESC
 LIMIT 1;
+
+-- List all vets and their specialties, including vets with no specialties.
+SELECT vets.name AS vet_name, species.name FROM vets
+LEFT JOIN specializations
+ON specializations.vet_id = vets.id
+LEFT JOIN species
+ON species.id = specializations.species_id;
