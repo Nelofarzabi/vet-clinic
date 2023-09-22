@@ -52,3 +52,9 @@ ALTER TABLE animals
 ADD CONSTRAINT fk_owner
 FOREIGN KEY (owner_id)
 REFERENCES owners(id);
+
+--  Create a "join table" called specializations
+CREATE TABLE specializations (
+    vet_id INT,
+    species_id  INT
+);
