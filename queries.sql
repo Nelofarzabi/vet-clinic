@@ -147,3 +147,9 @@ WHERE species.name = 'Pokemon';
 SELECT full_name, animals.name FROM owners
 JOIN animals
 ON owners.id = animals.owner_id;
+
+-- How many animals are there per species?
+SELECT species.name, COUNT(animals.name) FROM species
+JOIN animals
+ON species.id = animals.species_id
+GROUP BY species.name;
