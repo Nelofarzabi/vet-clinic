@@ -189,6 +189,11 @@ ON specializations.vet_id = vets.id
 LEFT JOIN species
 ON species.id = specializations.species_id;
 
+--How many different animals did Stephanie Mendez see?
+SELECT COUNT(DISTINCT animals) AS different_animals_seen
+FROM vets
+WHERE name = 'Stephanie Mendez';
+
 
 -- List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020
 SELECT vets.name AS vet_name, animals.name AS animal_name, date_of_visit FROM vets
