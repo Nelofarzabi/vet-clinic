@@ -175,21 +175,20 @@ ON owners.id = animals.owner_id
 GROUP BY full_name;
 
 -- Who was the last animal seen by William Tatcher?
-SELECT vets.name AS vet_name, animals.name AS animal_name, date_of_visit FROM vets
-JOIN visits
-ON visits.vet_id = vets.id
-JOIN animals
-ON visits.animal_id = animals.id
-WHERE vets.name = 'William Tatcher'
-ORDER BY date_of_visit DESC
-LIMIT 1;
+ SELECT animals.name, vistis.visit_date FROM visits 
+ LEFT JOIN animals ON animals.id = visits.animal_id 
+ LEFT JOIN vets ON vets.id = visits.vet_id WHERE vets.name = 'William Tatcher' 
+ ORDER BY visits.visit_date
+ DESC LIMIT 1;
 
 -- List all vets and their specialties, including vets with no specialties.
 SELECT vets.name AS vet_name, species.name FROM vets
+
 LEFT JOIN specializations
 ON specializations.vet_id = vets.id
 LEFT JOIN species
 ON species.id = specializations.species_id;
+
 
 -- List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020
 SELECT vets.name AS vet_name, animals.name AS animal_name, date_of_visit FROM vets
@@ -200,13 +199,10 @@ ON visits.animal_id = animals.id
 WHERE vets.name = 'Stephanie Mendez' AND date_of_visit BETWEEN '2020-04-01' AND '2020-08-30';
 
 -- What animal has the most visits to vets?
-SELECT animals.name, COUNT(animals.name) FROM animals
-JOIN visits
-ON animals.id = visits.animal_id
-JOIN vets
-ON visits.vet_id = vets.id
-GROUP BY animals.name
-ORDER BY count DESC
+SELECT animals.name, count(animals.name)
+FROM visits
+LEFT JOIN animals ON animals.id = visits.animal_id
+ORDER BY count(animals.name) DESC
 LIMIT 1;
 
 -- Who was Maisy Smith's first visit?
