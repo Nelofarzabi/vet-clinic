@@ -58,3 +58,10 @@ CREATE TABLE specializations (
     vet_id INT,
     species_id  INT
 );
+
+--   Create a "join table" called visits
+CREATE TABLE visits (
+	vet_id INT,
+    animal_id INT,
+    date_of_visit DATE
+);
