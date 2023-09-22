@@ -27,9 +27,9 @@ the state before the transaction.
 BEGIN;
 UPDATE animals
 SET species = 'unspecified';
-
+SELECT species from animals;
 ROLLBACK;
-
+SELECT species from animals;
 /*
 Update the animals table by setting the 
 species column to digimon for all 
@@ -62,7 +62,9 @@ then roll back the transaction.
 BEGIN;
 
 DELETE FROM animals;
+SELECT COUNT(*) FROM animals;
 ROLLBACK;
+SELECT COUNT(*) FROM animals;
 
 -- Delete all animals born after Jan 1st, 2022.
 
@@ -118,10 +120,10 @@ GROUP BY species;
 -- What is the average number of escape attempts per animal type of those born between 1990 and 2000?
 
 -- Neutered the average number of escape attempts
-SELECT neutered, AVG(escape_attempts) AS AVG_OF_ESCAPE
+SELECT species, AVG(escape_attempts) AS AVG_OF_ESCAPE
 FROM animals
-WHERE neutered = TRUE AND date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
-GROUP BY neutered;
+WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
+GROUP BY species;
 
 -- Not neutered the average number of escape attempts
 SELECT neutered as NOT_NEUTERED, AVG(escape_attempts) AS AVG_OF_ESCAPE
