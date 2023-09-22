@@ -51,3 +51,8 @@ WHERE NOT name LIKE '%mon';
 UPDATE animals
 SET owner_id = (SELECT id FROM owners WHERE full_name = 'Sam Smith')
 WHERE name = 'Agumon';
+
+-- Jennifer Orwell 
+UPDATE animals
+SET owner_id = (SELECT id FROM owners WHERE full_name = 'Jennifer Orwell')
+WHERE name IN ('Gabumon', 'Pikachu');
